@@ -27,7 +27,14 @@ const medipet = express();
 
 // Indico al servidor que utilizará cors
 medipet.use(cors({
-    origin: 'http://localhost:5173',
+    origin: [
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+        'http://localhost',
+        'http://localhost/medipet',
+        'https://medipet-r3og.onrender.com',
+        'https://frontend-q63q.onrender.com'
+    ],
     credentials: true
 }));
 
