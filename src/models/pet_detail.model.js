@@ -29,9 +29,15 @@ const petSchemaDetail = mongoose.Schema({
         trim: true,
         uppercase: true
     },
+    pet_id:{
+        type: String,
+        trim: true,
+        required: true
+    },
     pet:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'mp_pet',
+        // type: mongoose.Schema.Types.ObjectId,
+        type: String,
+        // ref: 'mp_pet',
         required: true
     }
 }, {

@@ -6,6 +6,8 @@ import mp_pet_detail from '../models/pet_detail.model.js'
 
 import { __dirname, __filename } from '../config.js';
 
+import mongoose from 'mongoose';
+
 // Función para obtener todas las mascotas
 export const getPets = async(req, res)=>{
     try{
@@ -104,13 +106,14 @@ export const editPet = async(req, res)=>{
 // Función para completar la información de una mascota
 export const completeInfoPet = async(req, res)=>{
     try{
-        const {pet_breed, pet_weight, pet_traits, pet_sterilized} = req.body;
+        const {pet_breed, pet_weight, pet_traits, pet_sterilized, pet_id} = req.body;
 
         const completePet = new mp_pet_detail({
             pet_breed,
             pet_weight,
             pet_traits,
             pet_sterilized,
+            pet_id,
             pet: req.params.id
         });
 
@@ -124,8 +127,10 @@ export const completeInfoPet = async(req, res)=>{
 
 // Función para obtener info una mascota
 export const getInfoPet = async(req, res)=>{
+    console.log(req.params.id);
     try{
-        const infoPet = await mp_pet_detail.find({pet: req.params.id}).populate('pet');
+        const infoPet = await mp_pet_detail.find({pet_id: req.params.id}).populate('pet');
+        console.log(infoPet);
 
         if(!infoPet){
             return res.status(404).json({message: ['Información de la mascota no encontrada.']})
