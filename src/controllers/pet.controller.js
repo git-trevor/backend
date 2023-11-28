@@ -129,7 +129,7 @@ export const completeInfoPet = async(req, res)=>{
 export const getInfoPet = async(req, res)=>{
     console.log(req.params.id);
     try{
-        const infoPet = await mp_pet_detail.find({pet_id: req.params.id}).populate('pet');
+        const infoPet = await mp_pet_detail.find({pet_id: req.params.id});//.populate('pet');
         console.log(infoPet);
 
         if(!infoPet){
