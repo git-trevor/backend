@@ -127,10 +127,8 @@ export const completeInfoPet = async(req, res)=>{
 
 // Función para obtener info una mascota
 export const getInfoPet = async(req, res)=>{
-    console.log(req.params.id);
     try{
-        const infoPet = await mp_pet_detail.find({pet_id: req.params.id});//.populate('pet');
-        console.log(infoPet);
+        const infoPet = await mp_pet_detail.find({pet_id: req.params.id}); //.populate('pet');
 
         if(!infoPet){
             return res.status(404).json({message: ['Información de la mascota no encontrada.']})
